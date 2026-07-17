@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2: Dynamic Element Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        button:hover {
+            background-color: #229954;
+        }
+
+        #paragraphContainer p {
+            background-color: #f0f0f0;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dynamic Element Creator</h1>
+    <button id="createParagraphBtn">Add Paragraph</button>
+
+    <div id="paragraphContainer"></div>
+
+    <script>
+        let paragraphCount = 0;
+        const paragraphContainer = document.getElementById('paragraphContainer');
+
+        document.getElementById('createParagraphBtn').addEventListener('click', function() {
+            paragraphCount++;
+
+            const newPara = document.createElement('p');
+            
+            const textSpan = document.createElement('span');
+            textSpan.textContent = `Paragraph #${paragraphCount}`;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.addEventListener('click', function() {
+                newPara.remove();
+            });
+
+            newPara.appendChild(textSpan);
+            newPara.appendChild(deleteBtn);
+            paragraphContainer.appendChild(newPara);
+        });
+    </script>
+
+</body>
+</html>
