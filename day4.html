@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: Content Copier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .box {
+            flex: 1;
+            min-height: 150px;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        #source {
+            background-color: #3498db;
+            color: white;
+            cursor: grab;
+        }
+
+        #source:active {
+            cursor: grabbing;
+        }
+
+        #target {
+            background-color: #f0f0f0;
+            border: 2px dashed #ccc;
+            color: #333;
+        }
+
+        #target.drag-over {
+            border-color: #3498db;
+            background-color: #e8f4fc;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #229954;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Content Copier</h1>
+    <p>Click the button to copy content, or drag the source box onto the target.</p>
+
+    <div class="container">
+        <div class="box" id="source" draggable="true">
+            <h3>Source</h3>
+            <p>This is the original content that will be copied to the target box.</p>
+        </div>
+
+        <div class="box" id="target">
+            <h3>Target</h3>
+            <p>Copied content will appear here.</p>
+        </div>
+    </div>
+
+    <button id="copyBtn">Copy Content</button>
+
+    <script>
+        const source = document.getElementById('source');
+        const target = document.getElementById('target');
+        const copyBtn = document.getElementById('copyBtn');
+
+        // Button click to copy
+        copyBtn.addEventListener('click', function() {
+            target.innerHTML = source.innerHTML;
+        });
+
+        // Bonus: Drag and drop
+        source.addEventListener('dragstart', function(event) {
+            event.dataTransfer.setData('text/html', source.innerHTML);
+        });
+
+        target.addEventListener('dragover', function(event) {
+            event.preventDefault();
+            target.classList.add('drag-over');
+        });
+
+        target.addEventListener('dragleave', function() {
+            target.classList.remove('drag-over');
+        });
+
+        target.addEventListener('drop', function(event) {
+            event.preventDefault();
+            target.classList.remove('drag-over');
+            const data = event.dataTransfer.getData('text/html');
+            target.innerHTML = data;
+        });
+    </script>
+
+</body>
+</html>
