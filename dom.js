@@ -49,3 +49,51 @@ console.log("6. First nav-link:", firstNavLink);
 const allParagraphs = document.querySelectorAll("p.content");
 const lastParagraph = allParagraphs[allParagraphs.length - 1];
 console.log("7. Last paragraph:", lastParagraph);
+
+// Task 9.2: Traversing the DOM
+
+const nav = document.querySelector("nav");
+
+// Parent
+console.log(nav.parentElement);          // header
+
+// Children
+console.log(nav.children);               // HTMLCollection
+console.log(nav.firstElementChild);      // ul
+console.log(nav.lastElementChild);       // ul
+
+// Siblings
+const article = document.querySelector("article");
+console.log(article.nextElementSibling);     // section
+console.log(article.previousElementSibling); // null
+
+// Descendants
+const navLinks = nav.querySelectorAll("a");  // all links inside nav
+console.log("All nav links:", navLinks);
+
+// Practice Tasks:
+
+// 1. Select the header, then navigate to the nav inside it
+const headerElement = document.querySelector("header");
+const navInsideHeader = headerElement.querySelector("nav");
+console.log("1. Nav inside header:", navInsideHeader);
+
+// 2. Select the first nav-link, then get its parent li
+const firstNavLink2 = document.querySelector(".nav-link");
+const parentLi = firstNavLink2.parentElement;
+console.log("2. Parent li of first nav-link:", parentLi);
+
+// 3. Select the article, then get its next sibling (section)
+const articleElement = document.querySelector("article");
+const nextSibling = articleElement.nextElementSibling;
+console.log("3. Article's next sibling:", nextSibling);
+
+// 4. Select the ul, then get all its child li elements
+const navUl = document.querySelector("ul");
+const listItems = navUl.children;
+console.log("4. All li elements in ul:", listItems);
+
+// 5. Start from the footer and navigate up to the body
+const footerElement = document.querySelector("footer");
+const bodyFromFooter = footerElement.parentElement;
+console.log("5. Body from footer:", bodyFromFooter);
