@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5: Dark Mode Toggle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
+            background-color: #ffffff;
+            color: #222222;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            min-height: 100vh;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            transition: color 0.4s ease;
+        }
+
+        body.dark-mode p {
+            color: #aaa;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        body.dark-mode button {
+            background-color: #f0f0f0;
+            color: #121212;
+        }
+
+        body.dark-mode button:hover {
+            background-color: #ccc;
+        }
+
+        .card {
+            max-width: 400px;
+            margin: 30px auto 0;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f4f4f4;
+            transition: background-color 0.4s ease;
+        }
+
+        body.dark-mode .card {
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dark Mode Toggle</h1>
+    <p>Click the button to switch between light and dark mode.</p>
+
+    <button id="darkModeToggle">Toggle Dark Mode</button>
+
+    <div class="card">
+        <p>This card also adapts to the theme, showing that the toggle affects the entire page.</p>
+    </div>
+
+    <script>
+        const body = document.body;
+        const toggleBtn = document.getElementById('darkModeToggle');
+
+        // Load saved preference on page load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        toggleBtn.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+
+            // Save preference
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+
+</body>
+</html>
