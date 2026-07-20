@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events Practice</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .error { border-color: red; }
+        #grandparent { padding: 20px; background: #ffcccc; }
+        #parent { padding: 20px; background: #ccffcc; }
+        #child { padding: 20px; background: #ccccff; }
+        #counter-display { font-size: 2rem; margin: 20px 0; }
+        ul#task-list { list-style: none; padding: 0; }
+        ul#task-list li { padding: 10px; background: #f0f0f0; margin: 5px 0; }
+        ul#task-list li.completed { text-decoration: line-through; opacity: 0.6; }
+    </style>
+</head>
+<body>
+    <h1>Events Practice</h1>
+
+    <!-- Click Counter -->
+    <section>
+        <h2>Click Counter</h2>
+        <div id="counter-display">0</div>
+        <button id="increment">+</button>
+        <button id="decrement">-</button>
+        <button id="reset">Reset</button>
+    </section>
+
+    <!-- Event Bubbling -->
+    <section>
+        <h2>Event Bubbling</h2>
+        <div id="grandparent">
+            Grandparent
+            <div id="parent">
+                Parent
+                <div id="child">
+                    Child
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delegated Task List -->
+    <section>
+        <h2>Delegated Task List</h2>
+        <input type="text" id="new-task" placeholder="New task">
+        <button id="add-task">Add Task</button>
+        <ul id="task-list">
+            <li>Sample Task 1 <button class="delete">Delete</button></li>
+            <li>Sample Task 2 <button class="delete">Delete</button></li>
+        </ul>
+    </section>
+
+    <!-- Form Validation -->
+    <section>
+        <h2>Form Validation</h2>
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Name">
+            <input type="email" id="email" placeholder="Email">
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <script src="events.js"></script>
+</body>
+</html>
