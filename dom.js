@@ -97,3 +97,79 @@ console.log("4. All li elements in ul:", listItems);
 const footerElement = document.querySelector("footer");
 const bodyFromFooter = footerElement.parentElement;
 console.log("5. Body from footer:", bodyFromFooter);
+// Task 9.3: Modifying Content
+
+// Exercise 1: Text Content
+const h1_2 = document.querySelector("h1");
+console.log(h1_2.textContent);
+console.log(h1_2.innerText);
+// Note: commented out to avoid changing the page permanently during testing
+// h1_2.textContent = "New Title";
+
+// Exercise 2: HTML Content
+const article2 = document.querySelector("article");
+console.log(article2.innerHTML);
+
+// Safer: textContent (escapes HTML)
+const userInput = "<script>alert('hack!')</script>";
+console.log("Safe text version:", userInput);
+
+// Exercise 3: Attributes
+const link2 = document.querySelector(".nav-link");
+console.log(link2.getAttribute("href"));
+console.log(link2.href);
+
+link2.setAttribute("href", "https://example.com");
+console.log("hasAttribute target:", link2.hasAttribute("target"));
+link2.removeAttribute("target");
+
+// Data attributes practice
+link2.dataset.newAttr = "value";
+console.log("Data attribute added:", link2.dataset.newAttr);
+
+// Exercise 4: Styles
+const container2 = document.querySelector(".container");
+container2.style.backgroundColor = "#f0f0f0";
+container2.style.padding = "30px";
+container2.style.borderRadius = "8px";
+
+Object.assign(container2.style, {
+    backgroundColor: "#333",
+    color: "white",
+    padding: "20px"
+});
+
+// Task 9.4: Adding & Removing Elements
+
+// Exercise 1: Creating Elements
+const newParagraph = document.createElement("p");
+newParagraph.textContent = "This is a new paragraph!";
+newParagraph.className = "content highlight";
+
+const article3 = document.querySelector("article");
+article3.appendChild(newParagraph);
+
+// Exercise 2: Removing Elements (demonstrated via console, not executed to preserve page)
+console.log("Removing elements demo - see comments for methods used");
+// const footer2 = document.querySelector("footer");
+// footer2.remove();
+
+// Exercise 3: Cloning Elements
+const navItem = document.querySelector(".nav-link").parentElement;
+const clone = navItem.cloneNode(true);
+clone.querySelector("a").textContent = "New Link";
+document.querySelector(".nav-list").appendChild(clone);
+
+// Build: Add nav item dynamically
+function addNavItem(text, href) {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.textContent = text;
+    a.href = href;
+    a.className = "nav-link";
+    li.appendChild(a);
+    document.querySelector(".nav-list").appendChild(li);
+}
+
+addNavItem("Blog", "/blog");
+addNavItem("Portfolio", "/portfolio");
